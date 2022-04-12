@@ -136,15 +136,62 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function (array, isSorted, iterator) {
+    // create an empty result array variable
+    var result = [];
+    // create transformed value array variable
+    var transformedValues = [];
+    // (without iterator)
+    if (iterator === undefined) {
+      // iterate over EACH value in given array
+      _.each(array, function(val) {
+        // if value is not in the result array,
+        if (_.indexOf(result, val) === -1) {
+          // push value into result array
+          result.push(val);
+        }
+      });
+    // else (with iterator)
+    } else {
+      // iterate over EACH value in given array
+      _.each(array, function(val) {
+        // if the result of calling the iterator on the value is not in the result array,
+        if (_.indexOf(transformedValues, iterator(val)) === -1) {
+          // push original value into result array
+          result.push(val);
+          transformedValues.push(iterator(val));
+        }
+      });
+    }
+    // return result array
+    return result;
   };
+  // I - array, and boolean value(sometimes), and function(sometimes)
+  // O - duplicate free version of the array
+  // C - must work with or without an iterator
+  // E - n/a
 
 
   // Return the results of applying an iterator to each element.
+  // map() is a useful primitive iteration function that works a lot
+  // like each(), but in addition to running the operation on all
+  // the members, it also maintains an array of results.
   _.map = function (collection, iterator) {
-    // map() is a useful primitive iteration function that works a lot
-    // like each(), but in addition to running the operation on all
-    // the members, it also maintains an array of results.
+    // create empty result array
+
+    // if input collection is an array
+      // iterate over EACH value in the collection (include value, index, and collection),
+        // push the result of (apply the iterator to the value) to the result array
+
+    // else if collection is an object
+      // iterate over EACH value in the collection (include value, key, and collection),
+        // push the result of (iterator called on value) to the result array
+
+    // return result array
   };
+  // I - collection (array OR object) and iterator
+  // O - array of elements that have been passed through iterator function
+  // C - produce a new array instead of mutating the original
+  // E - n/a
 
   /*
    * TIP: map is really handy when you want to transform an array of
