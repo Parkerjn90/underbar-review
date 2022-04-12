@@ -244,7 +244,32 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function (collection, iterator, accumulator) {
+    // create result variable to store accumulator
+
+    // if collection is array
+      // check if accumulator is provided
+        // assign result variable to accumulator
+        // iterate over EACH value in collection
+          // update the result variable to result of calling iterator on arguments: accumulator and current value
+      // else if accumulator is NOT provided
+        //
+
+    // else if collection is not array
+      // check if accumulator is provided
+        // assign result variable to accumulator
+        // iterate over EACH value in collection
+          // update the result variable to result of calling iterator on arguments: accumulator and current value
+      // else if accumulator is NOT provided
+        //
+
+    // return result variable
   };
+  // I - a collection (array OR object)
+  // O - a single value
+  // C - n/a
+  // E - n/a
+  // notes: may not have an accumulator
+
 
   // Determine if the array or object contains a given value (using `===`).
   _.contains = function (collection, target) {
