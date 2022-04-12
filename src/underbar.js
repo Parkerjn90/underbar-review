@@ -177,16 +177,28 @@
   // the members, it also maintains an array of results.
   _.map = function (collection, iterator) {
     // create empty result array
-
+    var result = [];
     // if input collection is an array
+    if (Array.isArray(collection)) {
       // iterate over EACH value in the collection (include value, index, and collection),
+      _.each(collection, function(value, index, collection) {
+        // provide access to index and collection within iterator call
+        iterator(value, index, collection);
         // push the result of (apply the iterator to the value) to the result array
-
+        result.push(iterator(value));
+      });
     // else if collection is an object
+    } else {
       // iterate over EACH value in the collection (include value, key, and collection),
+      _.each(collection, function(value, key, collection) {
+        // provide access to key and collection within iterator call
+        iterator(value, key, collection);
         // push the result of (iterator called on value) to the result array
-
+        result.push(iterator(value));
+      });
+    }
     // return result array
+    return result;
   };
   // I - collection (array OR object) and iterator
   // O - array of elements that have been passed through iterator function
