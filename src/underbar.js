@@ -245,24 +245,31 @@
   //          No accumulator is given so the first element is used.
   _.reduce = function (collection, iterator, accumulator) {
     // create result variable to store accumulator
-
-    // if collection is array
-      // check if accumulator is provided
-        // assign result variable to accumulator
-        // iterate over EACH value in collection
-          // update the result variable to result of calling iterator on arguments: accumulator and current value
-      // else if accumulator is NOT provided
-        //
-
-    // else if collection is not array
-      // check if accumulator is provided
-        // assign result variable to accumulator
-        // iterate over EACH value in collection
-          // update the result variable to result of calling iterator on arguments: accumulator and current value
-      // else if accumulator is NOT provided
-        //
-
+    var result;
+    // check if accumulator is provided
+    if (accumulator !== undefined) {
+      // assign result variable to accumulator
+      result = accumulator;
+      // iterate over EACH value in collection
+      _.each(collection, function(value) {
+        // reassign the result variable to result of calling iterator on arguments: accumulator and current value
+        result = iterator(result, value);
+      });
+    // else if accumulator is NOT provided
+    } else {
+      // accumulator variable will be the first element in the collection
+      result = collection[0];
+      // iterate over EACH value in collection
+      _.each(collection, function(value, index) {
+        // if index is greater than 0
+        if (index > 0) {
+          // reassign the result variable to result of calling iterator on arguments(first element): accumulator and current value
+          result = iterator(result, value);
+        }
+      });
+    }
     // return result variable
+    return result;
   };
   // I - a collection (array OR object)
   // O - a single value
